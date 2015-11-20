@@ -20,8 +20,13 @@ $stayTime : 1000ms;
 //transition time , input the mesec
 $tranTime : 1000ms;
 
+//parent div
+$par-name : slogan;
+$par-height : 600px;
+$par-width : 100%;
+
 // picture list , every id and picture to circle
-$picList:one,two,three,four,five,one;
+$picList:slogan-back1,slogan-back2,slogan-back3,slogan-back4,slogan-back5,slogan-back1;
 
 
 
@@ -72,9 +77,9 @@ $totalTime:($stayTime+$tranTime)*($picNum - 1);
 	}
 }
 
-.parent{
-	height: 100px;
-	width: 100px;
+.#{$par-name}{
+	height: $par-height;
+	width: $par-width;
 	overflow: hidden;
 	ul{
 		width: $ulWidth;
