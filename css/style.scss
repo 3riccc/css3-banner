@@ -50,8 +50,12 @@ $totalTime:($stayTime+$tranTime)*($picNum - 1);
 			$stayMove : ($i - 1) * $baseMove;
 			#{$timeStay} {transform:translateX(#{ - $stayMove})};
 			#{$timeStay} {-webkit-transform:translateX(#{ - $stayMove})};
+			#{$timeStay} {-moz-transform:translateX(#{ - $stayMove})};
+			#{$timeStay} {-o-transform:translateX(#{ - $stayMove})};
 			#{$timeMove} {transform:translateX(#{ - $lenMove})};
 			#{$timeMove} {-webkit-transform:translateX(#{ - $lenMove})};
+			#{$timeMove} {-moz-transform:translateX(#{ - $lenMove})};
+			#{$timeMove} {-o-transform:translateX(#{ - $lenMove})};
 		}
 	}
 }
