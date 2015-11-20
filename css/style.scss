@@ -91,6 +91,7 @@ $totalTime:($stayTime+$tranTime)*($picNum - 1);
 			background-repeat: no-repeat;
 			// the reason i choose background-image but not html img is this below
 			background-size: cover;
+			background-position: 50% 50%;
 		}
 		@each $pic in $picList{
 			##{$pic} {
