@@ -50,12 +50,24 @@ $totalTime:($stayTime+$tranTime)*($picNum - 1);
 			$stayMove : ($i - 1) * $baseMove;
 			#{$timeStay} {transform:translateX(#{ - $stayMove})};
 			#{$timeStay} {-webkit-transform:translateX(#{ - $stayMove})};
-			#{$timeStay} {-moz-transform:translateX(#{ - $stayMove})};
-			#{$timeStay} {-o-transform:translateX(#{ - $stayMove})};
 			#{$timeMove} {transform:translateX(#{ - $lenMove})};
 			#{$timeMove} {-webkit-transform:translateX(#{ - $lenMove})};
-			#{$timeMove} {-moz-transform:translateX(#{ - $lenMove})};
-			#{$timeMove} {-o-transform:translateX(#{ - $lenMove})};
+		}
+	}
+	@-webkit-keyframes banner{
+		$totalMove : 100% / $picNum * ($picNum - 1);
+		$baseMove : $totalMove / ($picNum - 1);
+		$baseTime : 100% / ($picNum - 1);
+		from {transform:translateX(0%);}
+		@for $i from 1 through $picNum {
+			$timeMove : $i * $baseTime;
+			$timeStay : $timeMove - $pass / ($stay + $pass) * $baseTime;
+			$lenMove : $i * $baseMove;
+			$stayMove : ($i - 1) * $baseMove;
+			#{$timeStay} {transform:translateX(#{ - $stayMove})};
+			#{$timeStay} {-webkit-transform:translateX(#{ - $stayMove})};
+			#{$timeMove} {transform:translateX(#{ - $lenMove})};
+			#{$timeMove} {-webkit-transform:translateX(#{ - $lenMove})};
 		}
 	}
 }
