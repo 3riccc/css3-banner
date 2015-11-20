@@ -1,0 +1,86 @@
+//I have some require for your html,you have to write your html like this:
+// <div class="parent">
+// 		<ul>
+// 			<li id="one"></li>
+// 			<li id="two"></li>
+// 			<li id="three"></li>
+// 			<li id="four"></li>
+// 			<li id="five"></li>
+// 			<li id="one"></li>
+// 		</ul>
+// 	</div>
+//pay attention that the last <li> is equal to the first one
+//I choose the background image to show the image , because it has cover attribute
+//so the background is better to be jpg format,if you use png or some others , change the source code yourself, on line 81
+//banner picture number , remember to add one addition
+$picNum : 6;
+//every picture stay time, input the mesec
+$stayTime : 1000ms;
+
+//transition time , input the mesec
+$tranTime : 1000ms;
+
+// picture list , every id and picture to circle
+$picList:one,two,three,four,five,one;
+
+
+
+
+
+//things below will caculate automatically you don't need to input
+$ulWidth : 100% * $picNum;
+$liWidth : 100% / $picNum;
+$totalTime:($stayTime+$tranTime)*($picNum - 1);
+
+@mixin mix-animation($duration,$name:banner,$count:infinite) {
+	animation:$name $duration $count;
+	-webkit-animation:$name $duration $count;
+}
+
+@mixin mix-keyframe($picNum,$stay,$pass) {
+	@keyframes banner{
+		$totalMove : 100% / $picNum * ($picNum - 1);
+		$baseMove : $totalMove / ($picNum - 1);
+		$baseTime : 100% / ($picNum - 1);
+		from {transform:translateX(0%);}
+		@for $i from 1 through $picNum {
+			$timeMove : $i * $baseTime;
+			$timeStay : $timeMove - $pass / ($stay + $pass) * $baseTime;
+			$lenMove : $i * $baseMove;
+			$stayMove : ($i - 1) * $baseMove;
+			#{$timeStay} {transform:translateX(#{ - $stayMove})};
+			#{$timeStay} {-webkit-transform:translateX(#{ - $stayMove})};
+			#{$timeMove} {transform:translateX(#{ - $lenMove})};
+			#{$timeMove} {-webkit-transform:translateX(#{ - $lenMove})};
+		}
+	}
+}
+
+.parent{
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	ul{
+		width: $ulWidth;
+		height: 100%;
+		padding:0;
+		margin: 0;
+		// animation here
+		@include mix-animation($totalTime,banner,infinite);
+		li{
+			display: block;
+			float: left;
+			height: 100%;
+			width: $liWidth;
+			background-repeat: no-repeat;
+			// the reason i choose background-image but not html img is this below
+			background-size: cover;
+		}
+		@each $pic in $picList{
+			##{$pic} {
+				background-image: url('../img/#{$pic}.jpg');
+			}
+		}
+	}
+}
+@include mix-keyframe($picNum,$stayTime,$tranTime);
